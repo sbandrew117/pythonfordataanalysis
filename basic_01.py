@@ -132,7 +132,7 @@ def set_02():
     ''' intersecting two sets:
     s4 = s1 & s2 '''
  
-def list_03():
+def list_practice_01():
      str1 = ['a', 'b', 'hi', 'hello']
      a = [x.upper() for x in str1 if len(x) > 2]
      print(a)
@@ -152,4 +152,5 @@ if __name__ == "__main__":
     dictionary_03()
     set_01()
     set_02()
-    list_03()
+    list_practice_01()
+    
