@@ -1,6 +1,5 @@
 import os
 import bisect
-
 #string, tuple = immutable
 
 def tuple_01():
@@ -87,9 +86,58 @@ def dictionary_01():
     del d1[3] #deleting dic with key 3
     print(d1)
     
+    a = list(d1.keys())
+    b = list(d1.values())
+    print(a)
+    print(b)
     
 #sorted, reversed method
-#sorted[2,3,1,2,3,1] -> []   
+
+def dictionary_02():
+    words = ['apple', 'banana', 'pineapple', 'watermelon']
+    by_letter = {}
+    for word in words:
+        letter = word[0] #word's first index as letter
+        if letter not in by_letter: #if letter is not in the dictionary
+            by_letter[letter] = [word] #dictionary by_letter has a key of letter and a word of value
+        else:
+            by_letter[letter].append(word)
+        #if - else -> by_letter.setdefault(letter, []).append(word)
+        #use "setdefault" method    
+        
+    print(by_letter)
+
+def dictionary_03():
+    d1 = {}
+    d1[tuple([1,2,3,4])] = 2 #list -> tuple :to make list as a key
+    print(d1)
+
+def set_01():
+    s1 = set([2, 2, 2, 2, 1, 3, 4]) #중복값 제거할때 이용? set (집합)
+    print(s1)
+    
+def set_02():
+    s1 = set([1, 2, 3, 4]) #set s1
+    s2 = {4, 5, 6, 7} #set s2
+    s3 = s1.union(s2) #merging two sets
+    
+    ''' merging two sets:
+    s3 = s1 | s2 '''    
+    
+    print(s3)
+
+    s4 = s1.intersection(s2)
+    print(s4)
+    
+    ''' intersecting two sets:
+    s4 = s1 & s2 '''
+ 
+def list_03():
+     str1 = ['a', 'b', 'hi', 'hello']
+     a = [x.upper() for x in str1 if len(x) > 2]
+     print(a)
+     
+        
 if __name__ == "__main__":
     print("2022_02_09")
     
@@ -100,4 +148,8 @@ if __name__ == "__main__":
     slicing_01()
     zip_01()
     dictionary_01()
-    
+    dictionary_02()
+    dictionary_03()
+    set_01()
+    set_02()
+    list_03()
