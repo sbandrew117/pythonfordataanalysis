@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
 #아래는 vscode에서의 Numpy 오작동으로 인해 Spyder 에서 작업하였습니다.
 
-
+'''
 import numpy as np
 
 def array_test_01():
@@ -146,3 +146,4 @@ if __name__ == "__main__":
     if_else_array()
     Test()
     linear_algebra()
+'''
