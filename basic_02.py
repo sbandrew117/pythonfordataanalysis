@@ -101,6 +101,7 @@ if __name__ == "__main__":
 
 '''
 import numpy as np
+import random
 
 def array_test_01():
     arr = np.arange(20).reshape((4,5))
@@ -140,10 +141,27 @@ def linear_algebra():
     #same as z = np.dot(x, y)
     print(z)
     
+def random_sample():
+    samples = np.random.normal(size=(4, 4))
+    print(samples)
 
+def stairs():
+    position = 0
+    walk = [position]
+    steps =1000
+    for i in range(steps):
+        step = 1 if random.randint(0, 1) else -1
+        position += step
+        walk.append(position)
+    #print(plt.plot(walk[:100]))
+    
+    
 if __name__ == "__main__":
     array_test_01()
     if_else_array()
     Test()
     linear_algebra()
+    random_sample()
+    
 '''
+#numpy.random은 큰 표본을 생성할 때 내장 모듈보다 수십 배 이상 빠름.
