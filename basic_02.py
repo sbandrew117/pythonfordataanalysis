@@ -1,6 +1,7 @@
 import re
 import os
 
+
 '''
 배열을 생성하는 방법 array 함수
 e.g. list 변환하기
