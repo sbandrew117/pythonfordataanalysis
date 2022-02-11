@@ -61,6 +61,7 @@ def dataframe_01():
     del frame2['hello']
     print(frame2)
     
+    #Transpose
     frame3 = frame2.T
     print(frame3)
     
