@@ -48,7 +48,7 @@ def funct():
         
         
 #list 정제 (import re)
-states = ['AlAbama', 'New Y#ORK!', 'Carolina@@@', 'georgia', 'Gerogia   ', " "]    
+states = ['AlAbama', 'New Y#ORK!', 'Carolina@@@', 'georgia', 'Gerogia    ', " "]    
 def clean_string(strings):
     result = []
     for value in strings:
