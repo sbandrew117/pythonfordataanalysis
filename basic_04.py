@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-from sympy import N
 
 
 #HDF5 format
@@ -137,14 +136,53 @@ def map_01():
     
     #page 280 lambda 함수로 다시 해보기
     
+#replacing with .replace    
+def replace_01():
+    data = pd.Series([1., -999., 2, -999., -1000., 3.])
+    print("\noriginal data:\n", data)
     
+    data2 = data.replace(-999, np.nan) #replacing the values -999 with NAN
+    print("\nreplaced -999 with NaN:\n", data2)
+    
+    data3 = data.replace([-999, 1], np.nan) #use list to replace more than 1 value
+    print("\nreplaced -999 and 1 with NaN:\n", data3)
 
+    data4 = data.replace([-999, 1], [np.nan, 0]) #use two lists to replace each values to respective values
+    print("\nreplaced -999 with NaN, 1 with 0 using two lists:\n", data4)    
 
+    data5 = data.replace({-999: np.nan, 2 : -2222}) #use a dictionary to replace each values to respective values
+    print("\nreplaced -999 with NaN, 2 with -222 using dictionary:\n", data5)
+    
+  #Renaming column index (.rename -> temporary change of the data, inplace = True -> changing the original data)
+def re_col():
+    data = pd.DataFrame(np.arange(12).reshape((3, 4)), index = ['ohio', 'Colorado', 'New York'], columns = ['one', 'two', 'three', 'four'])
+    print("\noriginal data:\n", data)
+    
+    transform = lambda x: x[:4].upper() #creating a function
+    data2 = data.index.map(transform) #applying "transform" function to the index
+    print("\nchanging index into upper cases using lambda function:\n", data2)
+
+    data.index = data.index.map(transform) #replacing with the new index with lambda functioned "transform"
+    print("\nreplacing original index with upper cases index:\n", data)
+    
+    #using .rename
+    data3 = data.rename(index = str.title, columns= str.upper) #.rename -> changing each index and column
+                                                               #.title method -> making the first letter upper case
+    print("\nrenaming index with .title and columns with .upper:\n", data3)
+    
+    data4 = data.rename(index = {'OHIO' : 'INDIANA'}, columns = {'three' : 'peekaboo'})
+    print("\nrenaming OHIO with INDINA and three with peekaboo using dictionary:\n", data4)
+    
+    data5 = data.rename(index = {'OHIO' : 'INDIANA'}, inplace = True) #using "inplace = True" to change the original data
+    print(data5)
+    
+    
 if __name__ == "__main__":
     #hdf5()
     #dropna_01()
     #dropna_02()
     #fillna_01()
     #eli_dup_row()
-    map_01()
-    
+    #map_01()
+    #replace_01()
+    re_col()
