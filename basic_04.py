@@ -176,6 +176,21 @@ def re_col():
     data5 = data.rename(index = {'OHIO' : 'INDIANA'}, inplace = True) #using "inplace = True" to change the original data
     print(data5)
     
+    #.cut method -> useful when categorizing(range)
+
+def cut_01():
+    ages = [20, 21, 22, 23, 25, 26, 27, 28, 29, 33, 34, 41, 42] 
+    bins = [18, 25, 35, 60, 100] #creating categories' range
+    cats = pd.cut(ages, bins)
+    print("\n", cats)
+    
+    print("\n", cats.codes) #.codes -> pandas의 특수한 객체 categorical outcome
+    
+    print("\n", cats.categories)
+    
+    print("\ncounting categories..:\n", pd.value_counts(cats)) #counting values in each categories
+    
+    
     
 if __name__ == "__main__":
     #hdf5()
@@ -185,4 +200,5 @@ if __name__ == "__main__":
     #eli_dup_row()
     #map_01()
     #replace_01()
-    re_col()
+    #re_col()
+    cut_01()
