@@ -1,7 +1,14 @@
 import re
+from bitarray import test
 import numpy as np
 import pandas as pd
 
+'''
+
+axis = 0 -> rows
+axis = 1 -> columns
+
+'''
 def labeling():
     group_names = ['Youth', 'YoungAdult', 'MiddleAged', 'Senior']
     ages = [20, 21, 22, 23, 25, 26, 27, 28, 29, 33, 34, 41, 42] 
@@ -141,8 +148,44 @@ def merge_01():
     # merging & printing out everything
     print("\nmerge everything:\n", pd.merge(df1, df2, how = 'outer'))
     
-   
+def concatenation():
+    arr = np.arange(12).reshape((3, 4))
+    print("\noriginal arr:\n", arr)
     
+    print("\nconcatenated: \n", np.concatenate([arr, arr], axis = 1))
+    
+    s1 = pd.Series([0, 1], index = ['a', 'b'])
+    s2 = pd.Series([2, 3, 4], index = ['c', 'd', 'e'])
+    s3 = pd.Series([5, 6], index = ['f', 'g'])
+    
+    print("\nconcatenated: \n", pd.concat([s1, s2, s3])) #concatenating s1, s2, s3 기본 axis = 0
+    
+    print("\nconcatenating by axis = 1: \n", pd.concat([s1, s2, s3], axis = 1))
+    
+    s4 = pd.concat([s1, s3])
+    print("\nconcatenating s1 and s4:\n", pd.concat([s1, s4], axis = 1, join = 'inner')) #join = 'inner' -> 교집합
+    
+'''
+
+.stack(): column -> row
+.unstack(): row -> column
+
+'''
+
+#넓은 형식에서 긴 형식으로 pivot
+def melt():
+    df = pd.DataFrame({'key' : ['foo', 'bar', 'baz'], 'a' : [1, 2, 3], 'b' : [4, 5, 6], 'c' : [7, 8, 9]})
+    print("\noriginal frame:\n", df)
+    
+    melted = pd.melt(df, ['key'])
+    print("\nmelted:\n", melted)
+    
+    reshaped = melted.pivot('key', 'variable', 'value')
+    print("\nreshaped:\n", reshaped)
+    
+    print("\n", reshaped.reset_index())
+
+
     
 if __name__ == "__main__":
     print("2022_02_15")
@@ -157,4 +200,6 @@ if __name__ == "__main__":
     #re_02()
     #index_01()
     #index_02()
-    merge_01()
+    #merge_01()
+    #concatenation()
+    melt()
