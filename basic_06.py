@@ -82,5 +82,34 @@ s = pd.Series(np.random.randn(10).cumsum(), index = np.arange(0, 100, 10))
 s.plot()
 '''
 #################################################################################################################################
+'''
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame(np.random.randn(10, 4).cumsum(0), columns = ['A', 'B', 'C', 'D'], index = np.arange(0, 100, 10))
+
+df.plot()
+'''
+#################################################################################################################################
+#.plot.bar() -> 수직막대그래프, .plot.barh() -> 수평막대그래프
+#color = 'k' -> black ink, alpha = 0.7 -> transparency
+'''
+df = pd.DataFrame(np.random.rand(6, 4), index = ['one', 'two', 'three', 'four', 'five', 'six'], 
+columns = pd.Index(['A', 'B', 'C', 'D'], name = 'Genus'))
+
+print(df)
+
+df.plot.bar()
+'''
+#################################################################################################################################
+#staced = True -> 누적막대그래프
+'''
+df = pd.DataFrame(np.random.rand(6, 4), index = ['one', 'two', 'three', 'four', 'five', 'six'], 
+columns = pd.Index(['A', 'B', 'C', 'D'], name = 'Genus'))
+
+df.plot.barh(stacked = True, alpha = 0.5)
+'''
+#################################################################################################################################
 
 
