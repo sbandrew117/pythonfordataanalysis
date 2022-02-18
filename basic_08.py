@@ -125,7 +125,12 @@ def down():
     
     print(ts)
     
-
+def up():
+    frame = pd.DataFrame(np.random.randn(2, 4),
+                         index = pd.date_range('1/1/2000', periods = 2,
+                                               freq = 'W-WED'),
+                         columns = ['Colorado', 'New York', 'Texas', 'Ohio'])
+    print(frame)
 
 
 if __name__ == "__main__":
@@ -143,5 +148,5 @@ if __name__ == "__main__":
     #period()
     #period_02()
     #resample_02()
-    down()
-    
+    #down()
+    up()
