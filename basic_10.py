@@ -88,20 +88,15 @@ def patsy_02():
     print("\ncategorical:\n", X)
     
     # page 516 - 517 복습
-    
+'''    
 def linear(mean, variance, size = 1):
     if isinstance(size, int):
         size = size
     return mean + np.sqrt(variance) * np.random.randn(*size)
     #동일한 난수 발생을 위해 시드값 직접 지정
-    np.random.seed(12345)
-    n = 100
-    x = np.c_[dnorm(0, 0.4, size)]
     
-    
-    
-    
-    
+    '''
+
     
     
     
@@ -115,5 +110,4 @@ def linear(mean, variance, size = 1):
 if __name__ == "__main__":
     #model_01()
     #patsy_01()
-    #patsy_02()
-    linear()
+    patsy_02()
