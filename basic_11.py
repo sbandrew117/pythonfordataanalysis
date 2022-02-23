@@ -105,9 +105,38 @@ class practice:
         
         print(over_2mm.plot(kind = 'barh'))
         
+        def get_top_amounts(group, key, n = 5):
+            totals = group.groupby(key)['contb_receipt_amt'].sum()
+            return totals.nlargest(n)
         
-
-                
+        
+        grouped = fec_mrbo.groupby('cand_nm')
+        
+        print(grouped.apply(get_top_amounts, 'contbr_occupation', n =7))
+        
+        grouped.apply(get_top_amounts, 'contbr_employer', n = 10)
+        
+        #기부금액
+        bins = np.array([0, 1, 10, 100, 1000, 10000,
+                         100000, 1000000, 10000000]) 
+        labels = pd.cut(fec_mrbo.contb_receipt_amt, bins)
+        
+        print("\ncateogires by donation size:\n", labels)
+        
+        grouped = fec_mrbo.groupby(['cand_nm', labels])       
+        print("\nunstacked:\n", grouped.size().unstack(0))
+        
+        #weekly 기부금액
+        grouped = fec_mrbo.groupby(['cand_nm', 'contbr_st'])
+        totals = grouped.contb_receipt_amt.sum().unstack(0).fillna(0)
+        totals = totals[totals.sum(1) > 100000]
+        
+        print("\nweekly:\n", totals[:10])
+        
+        percent = totals.div(totals.sum(1), axis =0)
+        print("\npercentage:\n", percent[:10])
+        
+        
         
         
     if __name__ == "__main__":
